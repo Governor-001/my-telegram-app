@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Apps</title>
+
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f5f7;
+      color: #222;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 25px;
+    }
+
+    .app-button {
+      display: block;
+      width: 100%;
+      padding: 17px;
+      margin: 12px 0;
+      border: none;
+      border-radius: 14px;
+      background: white;
+      color: #222;
+      font-size: 17px;
+      font-weight: bold;
+      text-decoration: none;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .app-button:active {
+      transform: scale(0.98);
+    }
+
+    .section {
+      margin-top: 28px;
+      margin-bottom: 10px;
+      font-size: 15px;
+      font-weight: bold;
+      color: #666;
+    }
+
+    .other {
+      background: #222;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>📱 My Apps</h1>
+
+    <div class="subtitle">
+      Access your favorite websites from Telegram
+    </div>
+
+    <div class="section">SOCIAL</div>
+
+    <a class="app-button"
+       href="https://www.facebook.com/"
+       target="_blank">
+      🔵 Facebook
+    </a>
+
+    <a class="app-button"
+       href="https://www.instagram.com/"
+       target="_blank">
+      📸 Instagram
+    </a>
+
+    <a class="app-button"
+       href="https://www.threads.net/"
+       target="_blank">
+      🧵 Threads
+    </a>
+
+    <div class="section">OTHER WEBSITES</div>
+
+    <a class="app-button other"
+       href="https://www.google.com/"
+       target="_blank">
+      🌐 Other Website
+    </a>
+
+  </div>
+
+  <script>
+    if (window.Telegram && Telegram.WebApp) {
+      Telegram.WebApp.ready();
+      Telegram.WebApp.expand();
+    }
+  </script>
+
+</body>
+  </html>
