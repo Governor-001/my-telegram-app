@@ -1,77 +1,197 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Apps</title>
 
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+
 <style>
-body {
-  font-family: Arial, sans-serif;
-  background: #f1f3f8;
-  margin: 0;
-  padding: 20px;
-  color: #222;
+* {
+  box-sizing: border-box;
 }
-h2 { text-align: center; }
+
+body {
+  margin: 0;
+  padding: 18px;
+  font-family: Arial, sans-serif;
+  background: var(--tg-theme-bg-color, #f2f4f8);
+  color: var(--tg-theme-text-color, #222);
+}
+
+h1 {
+  text-align: center;
+  margin: 8px 0;
+  font-size: 27px;
+}
+
+.subtitle {
+  text-align: center;
+  margin-bottom: 22px;
+  opacity: 0.7;
+  font-size: 14px;
+}
+
+h2 {
+  font-size: 17px;
+  margin: 22px 0 12px;
+}
+
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
 }
+
 .card {
-  background: white;
-  padding: 20px 8px;
+  background: var(--tg-theme-secondary-bg-color, #fff);
   border-radius: 15px;
+  padding: 15px 8px;
   text-align: center;
-  text-decoration: none;
-  color: #222;
-  box-shadow: 0 2px 8px #ddd;
+  box-shadow: 0 2px 7px rgba(0,0,0,0.06);
+  min-width: 0;
 }
+
 .icon {
-  font-size: 35px;
-  display: block;
-  margin-bottom: 10px;
+  font-size: 33px;
+  margin-bottom: 9px;
 }
+
+.name {
+  font-size: 14px;
+  font-weight: bold;
+  min-height: 34px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-wrap: anywhere;
+}
+
 button {
-  margin-top: 12px;
-  padding: 8px 20px;
+  width: 100%;
   border: none;
-  border-radius: 20px;
-  background: #2481cc;
-  color: white;
+  border-radius: 9px;
+  padding: 10px 4px;
+  margin-top: 10px;
+  background: var(--tg-theme-button-color, #2481cc);
+  color: var(--tg-theme-button-text-color, white);
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.note {
+  margin-top: 22px;
+  font-size: 12px;
+  line-height: 1.5;
+  opacity: 0.7;
+  text-align: center;
 }
 </style>
 </head>
 
 <body>
-<h2>📱 My Apps</h2>
-<div class="grid">
 
-<a class="card" href="https://www.facebook.com/">
-<span class="icon">📘</span>Facebook<button>OPEN</button></a>
+<h1>📱 My Apps</h1>
+<div class="subtitle">Your favourite apps in one place</div>
 
-<a class="card" href="https://www.instagram.com/">
-<span class="icon">📸</span>Instagram<button>OPEN</button></a>
+<div id="appSections"></div>
 
-<a class="card" href="https://www.tiktok.com/">
-<span class="icon">🎵</span>TikTok<button>OPEN</button></a>
-
-<a class="card" href="https://www.threads.net/">
-<span class="icon">🧵</span>Threads<button>OPEN</button></a>
-
-<a class="card" href="https://www.youtube.com/">
-<span class="icon">▶️</span>YouTube<button>OPEN</button></a>
-
-<a class="card" href="https://www.google.com/">
-<span class="icon">🔎</span>Google<button>OPEN</button></a>
-
-<a class="card" href="https://www.gmail.com/">
-<span class="icon">✉️</span>Gmail<button>OPEN</button></a>
-
-<a class="card" href="https://www.reddit.com/">
-<span class="icon">💬</span>Reddit<button>OPEN</button></a>
-
+<div class="note">
+Some websites may require a separate login, open an external app,
+or restrict certain features in a browser.
 </div>
+
+<script>
+const sections = [
+  {
+    title: "Social Media",
+    apps: [
+      ["Facebook", "📘", "https://www.facebook.com/"],
+      ["Instagram", "📸", "https://www.instagram.com/"],
+      ["TikTok", "🎵", "https://www.tiktok.com/"],
+      ["Threads", "🧵", "https://www.threads.net/"],
+      ["X (Twitter)", "𝕏", "https://x.com/"]
+    ]
+  },
+  {
+    title: "Email",
+    apps: [
+      ["Gmail", "✉️", "https://mail.google.com/"],
+      ["Outlook", "📧", "https://outlook.live.com/mail/"]
+    ]
+  },
+  {
+    title: "Dating Apps",
+    apps: [
+      ["POF", "💙", "https://www.pof.com/"],
+      ["Tinder", "🔥", "https://tinder.com/"],
+      ["eHarmony", "❤️", "https://www.eharmony.com/"],
+      ["Stir", "👨‍👧", "https://www.stir.com/"],
+      ["OkCupid", "💚", "https://www.okcupid.com/"],
+      ["DateMyAge", "💬", "https://www.datemyage.com/"],
+      ["OurTime", "🌹", "https://www.ourtime.com/"],
+      ["Match", "💕", "https://www.match.com/"]
+    ]
+  },
+  {
+    title: "Web Browser",
+    apps: [
+      ["Brave Browser", "🦁", "https://search.brave.com/"],
+      ["Firefox", "🦊", "https://www.mozilla.org/firefox/"],
+      ["Microsoft Edge", "🌐", "https://www.microsoft.com/edge/"]
+    ]
+  }
+];
+
+const container = document.getElementById("appSections");
+
+sections.forEach(section => {
+  const heading = document.createElement("h2");
+  heading.textContent = section.title;
+  container.appendChild(heading);
+
+  const grid = document.createElement("div");
+  grid.className = "grid";
+
+  section.apps.forEach(([name, icon, url]) => {
+    const card = document.createElement("div");
+    card.className = "card";
+
+    const iconEl = document.createElement("div");
+    iconEl.className = "icon";
+    iconEl.textContent = icon;
+
+    const nameEl = document.createElement("div");
+    nameEl.className = "name";
+    nameEl.textContent = name;
+
+    const button = document.createElement("button");
+    button.textContent = "OPEN";
+
+    button.addEventListener("click", () => {
+      if (window.Telegram && Telegram.WebApp) {
+        Telegram.WebApp.openLink(url);
+      } else {
+        window.open(url, "_blank", "noopener,noreferrer");
+      }
+    });
+
+    card.appendChild(iconEl);
+    card.appendChild(nameEl);
+    card.appendChild(button);
+    grid.appendChild(card);
+  });
+
+  container.appendChild(grid);
+});
+
+if (window.Telegram && Telegram.WebApp) {
+  Telegram.WebApp.ready();
+  Telegram.WebApp.expand();
+}
+</script>
+
 </body>
 </html>
